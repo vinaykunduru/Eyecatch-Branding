@@ -102,6 +102,16 @@ footer .widget img {
   margin-top: -3px;
 }
 
+/* Portfolio */
+.projectItem {
+  margin-bottom: 30px;
+}
+.projectItem img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
 /* FOOTER */
 
 .footer {

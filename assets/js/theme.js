@@ -1,11 +1,6 @@
 'use strict';
 var theme = {
-  /**
-   * Theme's components/functions list
-   * Comment out or delete the unnecessary component.
-   * Some components have dependencies (plugins).
-   * Do not forget to remove dependency from src/js/vendor/ and recompile.
-   */
+  
   init: function () {
     theme.stickyHeader();
     theme.subMenu();
