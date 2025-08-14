@@ -119,7 +119,7 @@ footer .widget img {
 /* FOOTER */
 
 .footer {
-  padding: 100px 0 30px 0;
+  padding: 50px 0 30px 0;
 
   font-size: 11px;
   display: flex;
@@ -244,6 +244,11 @@ footer .widget img {
   margin-left: auto;
   margin-right: auto;
   text-align: left;
+}
+#fooAbout p strong {
+  color: #999;
+  padding-bottom: 5px;
+  display: inline-block;
 }
 #fooAbout .social {
   margin: 30px auto 0 auto;
