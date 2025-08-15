@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./assets/css/plugins.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
 
+    <script src="./assets/js/custom.js"></script>
     <link rel="stylesheet" href="./assets/css/custom.css" />
   </head>
 
@@ -104,7 +105,7 @@
         <!-- /.navbar -->
       </header>
       <!-- /header -->
-      <main id="swup" class="transition-slide-fade">
+      <main id="swup" class="transition-main">
         <section class="wrapper" id="portfolio">
           <div class="container mb-17">
             <div class="row mt-14 mt-md-14 mb-14">
@@ -224,255 +225,246 @@
         </section>
       </main>
 
-      <div class="newFooSection" style="background-color: #000">
-        <section class="services text-white" id="fooAbout">
-          <div class="container">
-            <div class="rowG50 borderBottom" style="border-bottom: 0">
-              <div class="col-md-9" style="border-right: 1px solid #333">
-                <div class="text-center">
-                  <img src="/assets/img/EcLogo-semi.svg" />
-                </div>
-                <div class="flex addressDiv">
-                  <div class="borderRight" style="border-right: 1px solid #333">
-                    <p>
-                      <strong>Hyderabad</strong><br />
-                      Plot No. 710, Road No. 36, Aditya Enclave, Venkatagiri,
-                      Jubilee Hills, Hyderabad, Telangana 500033.
-                    </p>
-                  </div>
-                  <div>
-                    <p>
-                      <strong>Vijayawada</strong><br />
-                      MG Rd, Behind Kalaniketan, Mogalrajapuram, Sidhartha
-                      Nagar, Labbipet, Vijayawada, Andhra Pradesh 520010.
-                    </p>
-                  </div>
-                </div>
-                <div class="social">
-                  <div>
-                    <a href="#" target="_blank"
-                      ><i class="uil uil-facebook"></i
-                    ></a>
-                  </div>
-                  <div>
-                    <a href="#" target="_blank"
-                      ><i class="uil uil-instagram-alt"></i
-                    ></a>
-                  </div>
-                  <div>
-                    <a href="#" target="_blank"
-                      ><i class="uil uil-linkedin"></i
-                    ></a>
-                  </div>
-                </div>
+      <section class="services" id="fooAbout">
+        <div class="container">
+          <div class="rowG50 borderBottom" style="border-bottom: 0">
+            <div
+              class="col-md-9"
+              style="border-right: 1px solid rgb(204, 204, 204)"
+            >
+              <div class="text-center">
+                <img src="/assets/img/EcLogo-dark.svg" />
               </div>
-              <div class="col-md-3">
-                <h3>Pages</h3>
-                <ul id="abtMenu">
-                  <li><a href="https://eyecatch.co.in">About</a></li>
-                  <li>
-                    <a href="https://eyecatch.co.in/news-events">Services</a>
-                  </li>
-                  <li>
-                    <a href="https://eyecatch.co.in/projects">Projects</a>
-                  </li>
-                  <li>
-                    <a href="https://eyecatch.co.in/careers">Careers</a>
-                  </li>
-                  <li><a href="#footer">Contact</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <footer class="footer" id="footer">
-          <div class="footer-section">
-            <div class="footer-link" data-target="emailSection">
-              Email
-              <span class="toggle" style="transform: rotate(0deg)">+</span>
-            </div>
-            <div class="sub-content" id="emailSection">
-              <p>
-                <span class="emailLabel">New Projects:</span>
-                <a href="mailto:projects@eyecatch.co.in"
-                  >projects@eyecatch.co.in</a
-                >
-              </p>
-              <p>
-                <span class="emailLabel">Contact:</span>
-                <a href="mailto:contact@eyecatch.co.in"
-                  >contact@eyecatch.co.in</a
-                >
-              </p>
-              <p>
-                <span class="emailLabel">Careers:</span>
-                <a href="mailto:hr@eyecatch.co.in">hr@eyecatch.co.in</a>
-              </p>
-            </div>
-          </div>
-
-          <div class="footer-section">
-            <div class="footer-link" data-target="officeSection">
-              Offices
-              <span class="toggle" style="transform: rotate(0deg)">+</span>
-            </div>
-            <div class="sub-content" id="officeSection">
-              <div>
-                <p class="sub-toggle" onclick="toggleAddressHyd()">Hyderabad</p>
-                <div
-                  class="address"
-                  id="hyderabadAddress"
-                  style="display: block"
-                >
-                  <p class="detailedAddress">
-                    <strong>Eyecatch Architects</strong><br />
+              <div class="flex addressDiv">
+                <div class="borderRight">
+                  <p>
+                    <strong>Hyderabad</strong><br />
                     Plot No. 710, Road No. 36, Aditya Enclave, Venkatagiri,
-                    Jubilee Hills, Hyderabad, Telangana 500033 <br />+91
-                    8125225696<br />contact@eyecatch.co.in<br />
+                    Jubilee Hills, Hyderabad, Telangana 500033.
                   </p>
                 </div>
-                <p class="sub-toggle" onclick="toggleAddressVijayawada()">
-                  Vijayawada
-                </p>
-                <div
-                  class="address"
-                  id="vijayawadaAddress"
-                  style="display: none"
-                >
-                  <p class="detailedAddress">
-                    <strong>Eyecatch</strong><br />
+                <div>
+                  <p>
+                    <strong>Vijayawada</strong><br />
                     MG Rd, Behind Kalaniketan, Mogalrajapuram, Sidhartha Nagar,
-                    Labbipet, Vijayawada, Andhra Pradesh 520010.<br />
-                    +91 96189 02587<br />contact@eyecatch.co.in<br />
+                    Labbipet, Vijayawada, Andhra Pradesh 520010.
                   </p>
                 </div>
               </div>
-              <div></div>
+              <div class="social">
+                <div>
+                  <a href="#" target="_blank"
+                    ><i class="uil uil-facebook"></i
+                  ></a>
+                </div>
+                <div>
+                  <a href="#" target="_blank"
+                    ><i class="uil uil-instagram-alt"></i
+                  ></a>
+                </div>
+                <div>
+                  <a href="#" target="_blank"
+                    ><i class="uil uil-linkedin"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 parallax-section">
+              <h3>Pages</h3>
+              <ul id="abtMenu">
+                <li><a href="https://eyecatch.co.in">About</a></li>
+                <li>
+                  <a href="https://eyecatch.co.in/news-events">News</a>
+                </li>
+                <li>
+                  <a href="https://eyecatch.co.in/projects">Projects</a>
+                </li>
+                <li>
+                  <a href="https://eyecatch.co.in/careers">Careers</a>
+                </li>
+                <li><a href="#footer">Contact</a></li>
+              </ul>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div class="footer-section">
-            <div class="footer-link" data-target="socialSection">
-              Social
-              <span class="toggle" style="transform: rotate(0deg)">+</span>
-            </div>
-            <div class="sub-content" id="socialSection">
-              <p>
-                <a
-                  href="https://www.facebook.com/EyeCatchArchitects"
-                  target="_blank"
-                  title="Eyecatch Facebook"
-                  >Facebook
-                  <span class="arrow" style="touch-action: none">
-                    <svg
-                      width="10"
-                      height="10"
-                      viewBox="0 0 10 10"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      style="touch-action: none"
-                    >
-                      <path
-                        d="M2 1H9V8"
-                        stroke="black"
-                        style="touch-action: none"
-                      ></path>
-                      <path
-                        d="M9 1L1 9"
-                        stroke="black"
-                        style="touch-action: none"
-                      ></path>
-                    </svg> </span
-                ></a>
-              </p>
-              <p>
-                <a
-                  href="https://www.instagram.com/eyecatcharchitects/"
-                  target="_blank"
-                  title="Eyecatch Facebook"
-                  >Instagram
-                  <span class="arrow" style="touch-action: none">
-                    <svg
-                      width="10"
-                      height="10"
-                      viewBox="0 0 10 10"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      style="touch-action: none"
-                    >
-                      <path
-                        d="M2 1H9V8"
-                        stroke="black"
-                        style="touch-action: none"
-                      ></path>
-                      <path
-                        d="M9 1L1 9"
-                        stroke="black"
-                        style="touch-action: none"
-                      ></path>
-                    </svg> </span
-                ></a>
-              </p>
-              <p>
-                <a
-                  href="https://www.linkedin.com/company/eyecatch-architects1"
-                  target="_blank"
-                  title="Eyecatch Facebook"
-                  >LinkedIn
-                  <span class="arrow" style="touch-action: none">
-                    <svg
-                      width="10"
-                      height="10"
-                      viewBox="0 0 10 10"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      style="touch-action: none"
-                    >
-                      <path
-                        d="M2 1H9V8"
-                        stroke="black"
-                        style="touch-action: none"
-                      ></path>
-                      <path
-                        d="M9 1L1 9"
-                        stroke="black"
-                        style="touch-action: none"
-                      ></path>
-                    </svg> </span
-                ></a>
-              </p>
-            </div>
+      <footer class="footer" id="footer">
+        <div class="footer-section">
+          <div class="footer-link" data-target="emailSection">
+            Email
+            <span class="toggle" style="transform: rotate(0deg)">+</span>
           </div>
+          <div class="sub-content" id="emailSection">
+            <p>
+              <span class="emailLabel">New Projects:</span>
+              <a href="mailto:projects@eyecatch.co.in"
+                >projects@eyecatch.co.in</a
+              >
+            </p>
+            <p>
+              <span class="emailLabel">Contact:</span>
+              <a href="mailto:contact@eyecatch.co.in">contact@eyecatch.co.in</a>
+            </p>
+            <p>
+              <span class="emailLabel">Careers:</span>
+              <a href="mailto:hr@eyecatch.co.in">hr@eyecatch.co.in</a>
+            </p>
+          </div>
+        </div>
 
-          <div class="footer-section">
-            <div class="footer-link" data-target="copyrightSection">
-              Copyright
-              <span class="toggle" style="transform: rotate(0deg)">+</span>
-            </div>
-            <div class="sub-content" id="copyrightSection">
-              <p>
-                <a href="docs/Privacy Policy-ECArchitects.pdf" target="_blank"
-                  >Policy</a
-                >
-              </p>
-              <p><a href="#">Terms of Use</a></p>
-              <p><a href="#">Legal Disclaimer</a></p>
-            </div>
+        <div class="footer-section">
+          <div class="footer-link" data-target="officeSection">
+            Offices
+            <span class="toggle" style="transform: rotate(0deg)">+</span>
           </div>
-        </footer>
-        <div id="fooCopyRight" class="container" style="border-top-color: #333">
-          <div class="row">
-            <div class="col6">© EyeCatch 2025. All Rights Reserved.</div>
-            <div class="col6 fooBrand">
-              Designed by
+          <div class="sub-content" id="officeSection">
+            <div>
+              <p class="sub-toggle" onclick="toggleAddressHyd()">Hyderabad</p>
+              <div class="address" id="hyderabadAddress" style="display: block">
+                <p class="detailedAddress">
+                  <strong>Eyecatch Architects</strong><br />
+                  Plot No. 710, Road No. 36, Aditya Enclave, Venkatagiri,
+                  Jubilee Hills, Hyderabad, Telangana 500033 <br />+91
+                  8125225696<br />contact@eyecatch.co.in<br />
+                </p>
+              </div>
+              <p class="sub-toggle" onclick="toggleAddressVijayawada()">
+                Vijayawada
+              </p>
+              <div class="address" id="vijayawadaAddress" style="display: none">
+                <p class="detailedAddress">
+                  <strong>Eyecatch</strong><br />
+                  MG Rd, Behind Kalaniketan, Mogalrajapuram, Sidhartha Nagar,
+                  Labbipet, Vijayawada, Andhra Pradesh 520010.<br />
+                  +91 96189 02587<br />contact@eyecatch.co.in<br />
+                </p>
+              </div>
+            </div>
+            <div></div>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <div class="footer-link" data-target="socialSection">
+            Social
+            <span class="toggle" style="transform: rotate(0deg)">+</span>
+          </div>
+          <div class="sub-content" id="socialSection">
+            <p>
               <a
-                href="https://eyecatch.co.in"
+                href="https://www.facebook.com/EyeCatchArchitects"
                 target="_blank"
-                title="EyeCatch Branding &amp; Advertising"
-                >EyeCatch Branding and Advertising</a
-              >.
-            </div>
+                title="Eyecatch Facebook"
+                >Facebook
+                <span class="arrow" style="touch-action: none">
+                  <svg
+                    width="10"
+                    height="10"
+                    viewBox="0 0 10 10"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    style="touch-action: none"
+                  >
+                    <path
+                      d="M2 1H9V8"
+                      stroke="black"
+                      style="touch-action: none"
+                    ></path>
+                    <path
+                      d="M9 1L1 9"
+                      stroke="black"
+                      style="touch-action: none"
+                    ></path>
+                  </svg> </span
+              ></a>
+            </p>
+            <p>
+              <a
+                href="https://www.instagram.com/eyecatcharchitects/"
+                target="_blank"
+                title="Eyecatch Facebook"
+                >Instagram
+                <span class="arrow" style="touch-action: none">
+                  <svg
+                    width="10"
+                    height="10"
+                    viewBox="0 0 10 10"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    style="touch-action: none"
+                  >
+                    <path
+                      d="M2 1H9V8"
+                      stroke="black"
+                      style="touch-action: none"
+                    ></path>
+                    <path
+                      d="M9 1L1 9"
+                      stroke="black"
+                      style="touch-action: none"
+                    ></path>
+                  </svg> </span
+              ></a>
+            </p>
+            <p>
+              <a
+                href="https://www.linkedin.com/company/eyecatch-architects1"
+                target="_blank"
+                title="Eyecatch Facebook"
+                >LinkedIn
+                <span class="arrow" style="touch-action: none">
+                  <svg
+                    width="10"
+                    height="10"
+                    viewBox="0 0 10 10"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    style="touch-action: none"
+                  >
+                    <path
+                      d="M2 1H9V8"
+                      stroke="black"
+                      style="touch-action: none"
+                    ></path>
+                    <path
+                      d="M9 1L1 9"
+                      stroke="black"
+                      style="touch-action: none"
+                    ></path>
+                  </svg> </span
+              ></a>
+            </p>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <div class="footer-link" data-target="copyrightSection">
+            Copyright
+            <span class="toggle" style="transform: rotate(0deg)">+</span>
+          </div>
+          <div class="sub-content" id="copyrightSection">
+            <p>
+              <a href="docs/Privacy Policy-ECArchitects.pdf" target="_blank"
+                >Policy</a
+              >
+            </p>
+            <p><a href="#">Terms of Use</a></p>
+            <p><a href="#">Legal Disclaimer</a></p>
+          </div>
+        </div>
+      </footer>
+      <div id="fooCopyRight" class="container">
+        <div class="row">
+          <div class="col6">© EyeCatch 2025. All Rights Reserved.</div>
+          <div class="col6 fooBrand">
+            Designed by
+            <a
+              href="https://eyecatch.co.in"
+              target="_blank"
+              title="EyeCatch Branding &amp; Advertising"
+              >EyeCatch Branding and Advertising</a
+            >.
           </div>
         </div>
       </div>
@@ -552,33 +544,6 @@
         document.getElementById("tamilnaduAddress").style.display = "none";
       }
     </script>
-    <!-- <script src="https://unpkg.com/swup@4/dist/Swup.umd.js" defer></script>
-
-    <script defer>
-      document.addEventListener("DOMContentLoaded", function () {
-        const swup = new Swup(); 
-      });
-    </script> -->
-    <style>
-      /* Start state: before animation in */
-      /* .transition-slide-fade {
-        transform: translateY(30px);
-        opacity: 0;
-        transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1),
-          opacity 0.6s ease;
-      } */
-
-      /* Animate new content in */
-      /* html.is-rendering .transition-slide-fade {
-        transform: translateY(0);
-        opacity: 1;
-      } */
-
-      /* Animate old content out */
-      /* html.is-leaving .transition-slide-fade {
-        transform: translateY(-30px);
-        opacity: 0;
-      } */
-    </style>
+    <div class="overlay transition-overlay"></div>
   </body>
 </html>
