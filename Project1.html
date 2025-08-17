@@ -50,11 +50,7 @@
                   </li>
 
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Services</a>
-                  </li>
-
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Blog</a>
+                    <a class="nav-link" href="Projects.html">Works</a>
                   </li>
 
                   <li class="nav-item">
@@ -111,7 +107,7 @@
           <div class="container mb-14">
             <div class="row mt-3 mb-3">
               <div class="col-md-12">
-                <a href="Projects.html"
+                <a onclick="javascript:history.back()"
                   ><i class="uil uil-angle-left"></i> Back</a
                 >
               </div>
@@ -121,7 +117,7 @@
                 <img
                   src="https://placehold.co/1920x780/red/FFFFFF.png"
                   alt=""
-                  class="w-100"
+                  class="w-100 reveal-img"
                 />
               </div>
             </div>
@@ -129,11 +125,11 @@
           <div class="container mb-17">
             <div class="row">
               <div class="col-md-5">
-                <h1>Project 1</h1>
+                <h1 class="reveal-heading">Project 1</h1>
               </div>
               <div class="col-md-7">
-                <h3>Project Details</h3>
-                <p>
+                <h3 class="reveal-heading">Project Details</h3>
+                <p class="reveal-text">
                   Lorem Ipsum is simply dummy text of the printing and
                   typesetting industry. Lorem Ipsum has been the industry's
                   standard dummy text ever since the 1500s, when an unknown
@@ -145,7 +141,7 @@
                   passages, and more recently with desktop publishing software
                   like Aldus PageMaker including versions of Lorem Ipsum.
                 </p>
-                <p>
+                <p class="reveal-text">
                   Contrary to popular belief, Lorem Ipsum is not simply random
                   text. It has roots in a piece of classical Latin literature
                   from 45 BC, making it over 2000 years old. Richard McClintock,
@@ -268,7 +264,7 @@
                   style="display: block"
                 >
                   <p class="detailedAddress">
-                    <strong>Eyecatch Architects</strong><br />
+                    <strong>Eyecatch</strong><br />
                     Plot No. 710, Road No. 36, Aditya Enclave, Venkatagiri,
                     Jubilee Hills, Hyderabad, Telangana 500033 <br />+91
                     8125225696<br />contact@eyecatch.co.in<br />
@@ -301,10 +297,7 @@
             </div>
             <div class="sub-content" id="socialSection">
               <p>
-                <a
-                  href="https://www.facebook.com/EyeCatchArchitects"
-                  target="_blank"
-                  title="Eyecatch Facebook"
+                <a href="#" target="_blank" title="Eyecatch Facebook"
                   >Facebook
                   <span class="arrow" style="touch-action: none">
                     <svg
@@ -329,10 +322,7 @@
                 ></a>
               </p>
               <p>
-                <a
-                  href="https://www.instagram.com/eyecatcharchitects/"
-                  target="_blank"
-                  title="Eyecatch Facebook"
+                <a href="#" target="_blank" title="Eyecatch Facebook"
                   >Instagram
                   <span class="arrow" style="touch-action: none">
                     <svg
@@ -357,10 +347,7 @@
                 ></a>
               </p>
               <p>
-                <a
-                  href="https://www.linkedin.com/company/eyecatch-architects1"
-                  target="_blank"
-                  title="Eyecatch Facebook"
+                <a href="#" target="_blank" title="Eyecatch Facebook"
                   >LinkedIn
                   <span class="arrow" style="touch-action: none">
                     <svg
@@ -494,6 +481,132 @@
         document.getElementById("tamilnaduAddress").style.display = "none";
       }
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script>
+      gsap.registerPlugin(ScrollTrigger);
+    </script>
+
+    <script src="https://unpkg.com/split-type"></script>
+
+    <script>
+      gsap.registerPlugin(ScrollTrigger);
+
+      function initAnimations() {
+        // 🔹 Reset old triggers before re-init (important for Swup)
+        ScrollTrigger.getAll().forEach((st) => st.kill());
+
+        // 🔹 Headings (clipPath reveal)
+        gsap.utils.toArray(".reveal-heading").forEach((heading) => {
+          gsap.fromTo(
+            heading,
+            { clipPath: "inset(100% 0% 0% 0%)" },
+            {
+              clipPath: "inset(0% 0% 0% 0%)",
+              duration: 1.2,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: heading,
+                start: "top 80%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
+        });
+
+        // 🔹 Paragraph Text
+        gsap.utils.toArray(".reveal-text").forEach((text) => {
+          gsap.from(text, {
+            y: 30,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: text,
+              start: "top 90%",
+              toggleActions: "play none none reverse",
+            },
+          });
+        });
+
+        // 🔹 Images (skew + fade)
+        gsap.utils.toArray(".reveal-img").forEach((img) => {
+          gsap.from(img, {
+            y: 80,
+            skewY: 5,
+            opacity: 0,
+            duration: 1.2,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: img,
+              start: "top 85%",
+              toggleActions: "play none none reverse",
+            },
+          });
+        });
+
+        // Split each .reveal-split into words
+        let typeSplit = new SplitType(".reveal-split", {
+          types: "lines, words",
+          tagName: "span",
+        });
+
+        // Animate words word-by-word on scroll
+        gsap.from(".reveal-split .word", {
+          y: "100%", // masked from below
+          opacity: 0,
+          duration: 0.5,
+          ease: "expo.out",
+          stagger: 0.08,
+          scrollTrigger: {
+            trigger: ".reveal-split",
+            start: "top 80%",
+            end: "bottom 50%",
+            toggleActions: "play none none reverse",
+          },
+        });
+        // Refresh ScrollTrigger after all setups
+        ScrollTrigger.refresh();
+      }
+
+      // First run
+      initAnimations();
+
+      // Swup hook → re-run animations after page transition
+      document.addEventListener("swup:contentReplaced", () => {
+        initAnimations();
+      });
+    </script>
+
+    <style>
+      .projectItem h3 {
+        font-size: 60px;
+        /* line-height: normal;
+        font-weight: 300; */
+      }
+
+      .reveal-split {
+        display: inline-block; /* needed so clip-path applies cleanly */
+        will-change: transform;
+        font-weight: 800;
+        line-height: 1.1;
+        font-size: 3rem;
+        letter-spacing: -0.01em;
+        max-width: 800px;
+        text-align: left;
+      }
+
+      /* SplitType adds these classes */
+      .reveal-split .line {
+        display: block; /* ensure each line is a block for masking */
+        overflow: hidden; /* hide words moving up inside */
+      }
+
+      .reveal-split .word {
+        display: inline-block;
+        will-change: transform, opacity;
+      }
+    </style>
     <div class="overlay transition-overlay"></div>
   </body>
 </html>
