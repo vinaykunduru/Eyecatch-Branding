@@ -85,7 +85,21 @@ function initSwiper() {
     }
     window.mySwiper = new Swiper(".swiper", {
       loop: true,
-      slidesPerView: 4,
+      slidesPerView: 1,
+      breakpoints: {
+        640: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+        768: {
+          slidesPerView: 3,
+          spaceBetween: 40,
+        },
+        1024: {
+          slidesPerView: 4,
+          spaceBetween: 50,
+        },
+      },
       autoplay: { delay: 4000 },
       pagination: { el: ".swiper-pagination", clickable: true },
       navigation: {
@@ -125,3 +139,71 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 50); // ensure DOM is painted
   });
 });
+
+// Toggle Main Sections
+document.querySelectorAll(".footer-link").forEach((link) => {
+  link.addEventListener("click", function () {
+    const targetId = this.getAttribute("data-target");
+    const subContent = document.getElementById(targetId);
+    const toggleSymbol = this.querySelector(".toggle");
+
+    // Close all open sections
+    document.querySelectorAll(".sub-content").forEach((content) => {
+      if (content.id !== targetId) {
+        content.classList.remove("show");
+      }
+    });
+    document.querySelectorAll(".toggle").forEach((toggle) => {
+      if (toggle !== toggleSymbol) {
+        toggle.textContent = "+";
+        toggle.style.transform = "rotate(0deg)";
+      }
+      setTimeout(() => {
+        window.scrollInstance && window.scrollInstance.update();
+      }, 400); // delay to wait for animation
+    });
+
+    // Toggle current section
+    if (subContent.classList.contains("show")) {
+      subContent.classList.remove("show");
+      toggleSymbol.textContent = "+";
+      toggleSymbol.style.transform = "rotate(0deg)";
+    } else {
+      subContent.classList.add("show");
+      toggleSymbol.textContent = "-";
+      toggleSymbol.style.transform = "rotate(180deg)";
+    }
+  });
+});
+
+function toggleSubmenu(el) {
+  const parentLi = el.closest("li.has-submenu");
+  const icon = el.querySelector(".submenu-icon");
+
+  parentLi.classList.toggle("open");
+  if (parentLi.classList.contains("open")) {
+    icon.textContent = "−";
+  } else {
+    icon.textContent = "+";
+  }
+}
+
+// Toggle Vijayawada Address
+function toggleAddressHyd() {
+  document.getElementById("hyderabadAddress").style.display = "block";
+  document.getElementById("vijayawadaAddress").style.display = "none";
+  document.getElementById("tamilnaduAddress").style.display = "none";
+}
+
+// Toggle Tamilnadu Address
+function toggleAddressTamil() {
+  document.getElementById("hyderabadAddress").style.display = "none";
+  document.getElementById("vijayawadaAddress").style.display = "none";
+  document.getElementById("tamilnaduAddress").style.display = "block";
+}
+
+function toggleAddressVijayawada() {
+  document.getElementById("hyderabadAddress").style.display = "none";
+  document.getElementById("vijayawadaAddress").style.display = "block";
+  document.getElementById("tamilnaduAddress").style.display = "none";
+}
