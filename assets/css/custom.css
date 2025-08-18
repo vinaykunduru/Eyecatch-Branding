@@ -117,10 +117,10 @@ footer .widget img {
   will-change: transform;
   font-weight: 600;
   line-height: 1.1;
-  font-size: 3rem;
+  /* font-size: 3rem;
   letter-spacing: -0.01em;
   max-width: 800px;
-  text-align: left;
+  text-align: left; */
 }
 
 /* SplitType adds these classes */
