@@ -1,13 +1,22 @@
 const swup = new Swup();
-
 gsap.registerPlugin(ScrollTrigger);
 
+console.log("🚀 custom.js loaded");
+
+// -----------------------------
+// INIT ANIMATIONS
+// -----------------------------
 function initAnimations() {
-  // Kill old ScrollTriggers
-  ScrollTrigger.getAll().forEach((st) => st.kill());
+  console.log("🎬 initAnimations() called");
+
+  // Clean up old triggers
+  const triggers = ScrollTrigger.getAll();
+  console.log("🗑 Killing old ScrollTriggers:", triggers.length);
+  triggers.forEach((st) => st.kill());
 
   // ---- Headings (clipPath reveal) ----
-  gsap.utils.toArray(".reveal-heading").forEach((heading) => {
+  gsap.utils.toArray(".reveal-heading").forEach((heading, i) => {
+    console.log("✨ Animating .reveal-heading", i, heading.textContent.trim());
     gsap.fromTo(
       heading,
       { clipPath: "inset(100% 0% 0% 0%)" },
@@ -18,14 +27,16 @@ function initAnimations() {
         scrollTrigger: {
           trigger: heading,
           start: "top 80%",
-          toggleActions: "play none none reverse",
+          toggleActions: "restart none none none",
+          onEnter: () => console.log("▶️ Enter reveal-heading", i),
         },
       }
     );
   });
 
   // ---- Paragraph Text ----
-  gsap.utils.toArray(".reveal-text").forEach((text) => {
+  gsap.utils.toArray(".reveal-text").forEach((text, i) => {
+    console.log("✨ Animating .reveal-text", i, text.textContent.trim());
     gsap.from(text, {
       y: 30,
       opacity: 0,
@@ -34,13 +45,15 @@ function initAnimations() {
       scrollTrigger: {
         trigger: text,
         start: "top 95%",
-        toggleActions: "play none none reverse",
+        toggleActions: "restart none none none",
+        onEnter: () => console.log("▶️ Enter reveal-text", i),
       },
     });
   });
 
   // ---- Images (skew + fade) ----
-  gsap.utils.toArray(".reveal-img").forEach((img) => {
+  gsap.utils.toArray(".reveal-img").forEach((img, i) => {
+    console.log("✨ Animating .reveal-img", i, img.tagName);
     gsap.from(img, {
       y: 80,
       skewY: 5,
@@ -50,120 +63,138 @@ function initAnimations() {
       scrollTrigger: {
         trigger: img,
         start: "top 95%",
-        once: true,
+        toggleActions: "restart none none none",
+        onEnter: () => console.log("▶️ Enter reveal-img", i),
       },
     });
   });
 
   // ---- Split Headings (word-by-word) ----
-  document.querySelectorAll(".reveal-split").forEach((el) => {
-    // Clean old split if exists
-    if (el._split) el._split.revert();
+  document.querySelectorAll(".reveal-split").forEach((el, i) => {
+    if (el._split) {
+      console.log("🔄 Reverting old SplitType on .reveal-split", i);
+      el._split.revert();
+      el._split = null;
+    }
 
-    // Create new split
-    el._split = new SplitType(el, {
-      types: "lines, words",
-      tagName: "span",
-    });
+    console.log(
+      "✂️ Splitting text for .reveal-split",
+      i,
+      el.textContent.trim()
+    );
+    el._split = new SplitType(el, { types: "words", tagName: "span" });
 
-    // Animate words
     gsap.from(el._split.words, {
       y: "100%",
       opacity: 0,
       duration: 0.25,
       ease: "power4.out",
-      stagger: 0.1,
+      stagger: 0.08,
       scrollTrigger: {
         trigger: el,
-        start: "top 80%",
-        toggleActions: "play none none reverse",
+        start: "top 85%",
+        toggleActions: "restart none none none",
+        onEnter: () => console.log("▶️ Enter reveal-split", i),
       },
     });
   });
 
-  // Refresh after setup
+  // Force recalculation
   ScrollTrigger.refresh();
+  console.log("🔄 ScrollTrigger refreshed");
 }
 
-// Run once on page load
-initAnimations();
-
-// Run again after Swup transitions
-document.addEventListener("swup:contentReplaced", () => {
-  initAnimations();
-});
-
-// Re-init safely on resize
-let resizeTimer;
-window.addEventListener("resize", () => {
-  clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(initAnimations, 200);
-});
-
-// Toggle Main Sections
-document.querySelectorAll(".footer-link").forEach((link) => {
-  link.addEventListener("click", function () {
-    const targetId = this.getAttribute("data-target");
-    const subContent = document.getElementById(targetId);
-    const toggleSymbol = this.querySelector(".toggle");
-
-    // Close all open sections
-    document.querySelectorAll(".sub-content").forEach((content) => {
-      if (content.id !== targetId) {
-        content.classList.remove("show");
-      }
+// -----------------------------
+// INIT SWIPER
+// -----------------------------
+function initSwiper() {
+  console.log("🌀 initSwiper() called");
+  if (window.mySwiper) {
+    console.log("🗑 Destroying old swiper");
+    window.mySwiper.destroy(true, true);
+  }
+  const swiperEl = document.querySelector(".swiper");
+  if (swiperEl) {
+    console.log("✅ Initializing Swiper on .swiper element");
+    window.mySwiper = new Swiper(".swiper", {
+      loop: true,
+      slidesPerView: 1,
+      spaceBetween: 20,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
     });
-    document.querySelectorAll(".toggle").forEach((toggle) => {
-      if (toggle !== toggleSymbol) {
-        toggle.textContent = "+";
-        toggle.style.transform = "rotate(0deg)";
-      }
-      setTimeout(() => {
-        window.scrollInstance && window.scrollInstance.update();
-      }, 400); // delay to wait for animation
-    });
-
-    // Toggle current section
-    if (subContent.classList.contains("show")) {
-      subContent.classList.remove("show");
-      toggleSymbol.textContent = "+";
-      toggleSymbol.style.transform = "rotate(0deg)";
-    } else {
-      subContent.classList.add("show");
-      toggleSymbol.textContent = "-";
-      toggleSymbol.style.transform = "rotate(180deg)";
-    }
-  });
-});
-
-function toggleSubmenu(el) {
-  const parentLi = el.closest("li.has-submenu");
-  const icon = el.querySelector(".submenu-icon");
-
-  parentLi.classList.toggle("open");
-  if (parentLi.classList.contains("open")) {
-    icon.textContent = "−";
   } else {
-    icon.textContent = "+";
+    console.log("⚠️ No .swiper element found on this page");
   }
 }
 
-// Toggle Vijayawada Address
-function toggleAddressHyd() {
-  document.getElementById("hyderabadAddress").style.display = "block";
-  document.getElementById("vijayawadaAddress").style.display = "none";
-  document.getElementById("tamilnaduAddress").style.display = "none";
+// -----------------------------
+// INIT FOOTER + MENUS
+// -----------------------------
+function initFooterAndMenus() {
+  console.log("📂 initFooterAndMenus() called");
+  document.querySelectorAll(".footer-link").forEach((link, i) => {
+    console.log("📌 Binding footer-link", i, link.textContent.trim());
+    link.onclick = function () {
+      console.log("👉 Clicked footer link", i);
+      const targetId = this.getAttribute("data-target");
+      const subContent = document.getElementById(targetId);
+      const toggleSymbol = this.querySelector(".toggle");
+
+      document.querySelectorAll(".sub-content").forEach((content) => {
+        if (content.id !== targetId) content.classList.remove("show");
+      });
+      document.querySelectorAll(".toggle").forEach((toggle) => {
+        if (toggle !== toggleSymbol) {
+          toggle.textContent = "+";
+          toggle.style.transform = "rotate(0deg)";
+        }
+      });
+
+      if (subContent.classList.contains("show")) {
+        subContent.classList.remove("show");
+        toggleSymbol.textContent = "+";
+        toggleSymbol.style.transform = "rotate(0deg)";
+      } else {
+        subContent.classList.add("show");
+        toggleSymbol.textContent = "-";
+        toggleSymbol.style.transform = "rotate(180deg)";
+      }
+    };
+  });
 }
 
-// Toggle Tamilnadu Address
-function toggleAddressTamil() {
-  document.getElementById("hyderabadAddress").style.display = "none";
-  document.getElementById("vijayawadaAddress").style.display = "none";
-  document.getElementById("tamilnaduAddress").style.display = "block";
+// -----------------------------
+// MASTER INIT FUNCTION
+// -----------------------------
+function initPage() {
+  console.log("🚦 initPage() START for:", window.location.pathname);
+  initAnimations();
+  initSwiper();
+  initFooterAndMenus();
+  console.log("✅ Page Initialized:", window.location.pathname);
 }
 
-function toggleAddressVijayawada() {
-  document.getElementById("hyderabadAddress").style.display = "none";
-  document.getElementById("vijayawadaAddress").style.display = "block";
-  document.getElementById("tamilnaduAddress").style.display = "none";
-}
+// Run on first load
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("📥 DOMContentLoaded fired");
+  initPage();
+});
+
+// Run again after Swup navigation
+document.addEventListener("swup:contentReplaced", () => {
+  console.log("🔁 swup:contentReplaced fired");
+  initPage();
+});
+
+// Cleanup before page replace
+document.addEventListener("swup:willReplaceContent", () => {
+  console.log("🧹 swup:willReplaceContent - cleaning triggers");
+  ScrollTrigger.getAll().forEach((st) => st.kill());
+});
