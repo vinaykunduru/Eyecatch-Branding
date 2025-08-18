@@ -106,6 +106,34 @@ footer .widget img {
   margin-top: -3px;
 }
 
+/* Single Project */
+
+h1.singleprojectTitle {
+  font-size: 3.4rem;
+  line-height: normal;
+}
+.projectDetails {
+  margin-bottom: 30px;
+}
+.detailItem {
+  display: flex;
+  border-bottom: 1px solid #000;
+  padding: 0 0 10px 0;
+  margin-bottom: 10px;
+}
+.detailItem:first-child {
+  border-top: 1px solid #000;
+  padding-top: 10px;
+}
+.detailLabel {
+  width: 50%;
+}
+.detailValue {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 /* Portfolio */
 .projectItem {
   margin-bottom: 30px;
@@ -113,9 +141,56 @@ footer .widget img {
 .projectItem img {
   width: 100%;
   height: auto;
-  border-radius: 8px;
 }
 
+.text-right {
+  text-align: right;
+}
+h2.display-4.specialHead {
+  position: relative;
+  margin-bottom: -30px !important;
+}
+.specialHead span {
+  margin-left: -70px;
+  margin-bottom: 40px;
+}
+.specialHead span::after {
+  content: "";
+  position: absolute;
+  /* width: 100%; */
+  height: 1px;
+  top: 48px;
+  left: 24%;
+  background-color: #000;
+  right: 0;
+
+  background-color: #000;
+}
+
+.speclText {
+  position: absolute;
+  display: block;
+  right: 0%;
+  bottom: 0;
+  width: 64%;
+  font-size: 1.1rem;
+  margin-top: 0;
+}
+.speclText::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 15px;
+  height: 1px;
+  background-color: #000;
+  right: 150px;
+  display: block;
+}
+
+h2.display-4 {
+  font-size: 3rem;
+  font-weight: normal;
+}
 /* FOOTER */
 
 .footer {

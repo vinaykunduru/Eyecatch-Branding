@@ -43,10 +43,10 @@
               <div class="offcanvas-body ms-lg-auto d-flex flex-column h-100">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="index.html">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link" href="about.html">About</a>
                   </li>
 
                   <li class="nav-item">
@@ -559,10 +559,10 @@
       gsap.registerPlugin(ScrollTrigger);
 
       function initAnimations() {
-        // 🔹 Reset old triggers before re-init (important for Swup)
+        // Kill old ScrollTriggers
         ScrollTrigger.getAll().forEach((st) => st.kill());
 
-        // 🔹 Headings (clipPath reveal)
+        // ---- Headings (clipPath reveal) ----
         gsap.utils.toArray(".reveal-heading").forEach((heading) => {
           gsap.fromTo(
             heading,
@@ -580,7 +580,7 @@
           );
         });
 
-        // 🔹 Paragraph Text
+        // ---- Paragraph Text ----
         gsap.utils.toArray(".reveal-text").forEach((text) => {
           gsap.from(text, {
             y: 30,
@@ -589,13 +589,13 @@
             ease: "power2.out",
             scrollTrigger: {
               trigger: text,
-              start: "top 90%",
+              start: "top 95%",
               toggleActions: "play none none reverse",
             },
           });
         });
 
-        // 🔹 Images (skew + fade)
+        // ---- Images (skew + fade) ----
         gsap.utils.toArray(".reveal-img").forEach((img) => {
           gsap.from(img, {
             y: 80,
@@ -605,42 +605,55 @@
             ease: "power3.out",
             scrollTrigger: {
               trigger: img,
-              start: "top 85%",
+              start: "top 95%",
+              once: true,
+            },
+          });
+        });
+
+        // ---- Split Headings (word-by-word) ----
+        document.querySelectorAll(".reveal-split").forEach((el) => {
+          // Clean old split if exists
+          if (el._split) el._split.revert();
+
+          // Create new split
+          el._split = new SplitType(el, {
+            types: "lines, words",
+            tagName: "span",
+          });
+
+          // Animate words
+          gsap.from(el._split.words, {
+            y: "100%",
+            opacity: 0,
+            duration: 0.25,
+            ease: "power4.out",
+            stagger: 0.1,
+            scrollTrigger: {
+              trigger: el,
+              start: "top 80%",
               toggleActions: "play none none reverse",
             },
           });
         });
 
-        // Split each .reveal-split into words
-        let typeSplit = new SplitType(".reveal-split", {
-          types: "lines, words",
-          tagName: "span",
-        });
-
-        // Animate words word-by-word on scroll
-        gsap.from(".reveal-split .word", {
-          y: "100%", // masked from below
-          opacity: 0,
-          duration: 0.5,
-          ease: "expo.out",
-          stagger: 0.08,
-          scrollTrigger: {
-            trigger: ".reveal-split",
-            start: "top 80%",
-            end: "bottom 50%",
-            toggleActions: "play none none reverse",
-          },
-        });
-        // Refresh ScrollTrigger after all setups
+        // Refresh after setup
         ScrollTrigger.refresh();
       }
 
-      // First run
+      // Run once on page load
       initAnimations();
 
-      // Swup hook → re-run animations after page transition
+      // Run again after Swup transitions
       document.addEventListener("swup:contentReplaced", () => {
         initAnimations();
+      });
+
+      // Re-init safely on resize
+      let resizeTimer;
+      window.addEventListener("resize", () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(initAnimations, 200);
       });
     </script>
 
@@ -652,9 +665,9 @@
       }
 
       .reveal-split {
-        display: inline-block; /* needed so clip-path applies cleanly */
+        display: block; /* needed so clip-path applies cleanly */
         will-change: transform;
-        font-weight: 800;
+        font-weight: 600;
         line-height: 1.1;
         font-size: 3rem;
         letter-spacing: -0.01em;
@@ -670,7 +683,11 @@
 
       .reveal-split .word {
         display: inline-block;
-        will-change: transform, opacity;
+        overflow: hidden; /* lets y-translate work cleanly */
+        vertical-align: top;
+      }
+      .reveal-split .char {
+        display: inline-block;
       }
     </style>
     <div class="overlay transition-overlay"></div>
