@@ -86,6 +86,43 @@ footer .widget img {
 }
 
 /* About Page */
+
+.marquee {
+  overflow: hidden;
+  background: #000; /* optional */
+  color: #fff; /* optional */
+  height: 60px; /* adjust as needed */
+  display: flex;
+  align-items: center;
+}
+
+.marquee__track {
+  display: flex;
+  width: max-content;
+  white-space: nowrap;
+  animation: scroll var(--duration, 10s) linear infinite;
+}
+
+.marquee__inner {
+  display: inline-block;
+  padding-inline: 1.25rem;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  } /* moves by one copy's width */
+}
+
+.spclItem {
+  width: 55%;
+  margin-left: auto;
+  margin-right: -27%;
+  margin-top: -55%;
+}
 .speclAbout {
   background-color: #000;
   padding: 30px;
@@ -170,7 +207,7 @@ footer .widget img {
   display: block; /* needed so clip-path applies cleanly */
   will-change: transform;
   font-weight: 600;
-  line-height: 1.1;
+  line-height: 1.3;
   /* font-size: 3rem;
   letter-spacing: -0.01em;
   max-width: 800px;
@@ -568,12 +605,12 @@ h2.display-4 {
   }
 
   .footer {
-    padding-left: 0px;
+    padding-left: 20px;
     font-size: 12px;
     display: flex;
     justify-content: flex-start;
     gap: 0;
-    margin-bottom: 100px;
+    margin-bottom: 35px;
     flex-wrap: wrap;
     margin-right: 0;
     width: auto;
@@ -585,12 +622,61 @@ h2.display-4 {
     min-width: 20%;
     width: 25%;
   }
+  #fooCopyRight {
+    text-align: center;
+  }
+  .fooBrand {
+    text-align: center;
+  }
+
+  #fooAbout .col-md-9 {
+    border-right: 0 !important;
+  }
+  .mobileLM0 {
+    margin-left: 0 !important;
+  }
+  .mobileMB30 {
+    margin-bottom: 30px;
+  }
+
+  /* About */
+  .speclAbout {
+    padding: 15px;
+  }
+  .spclPara {
+    padding-left: 0 !important;
+  }
+  .speclAbout h4 {
+    margin-top: 30px;
+  }
+  .designigation {
+    text-align: left;
+  }
 
   /* Mobile Project Details */
 
   h1.singleprojectTitle {
     font-size: 2rem;
     line-height: 1.2;
+  }
+
+  .spclItem {
+    margin-left: 45%;
+  }
+  .specialHead span {
+    margin-left: 0;
+  }
+  .specialHead span::after {
+    left: 63%;
+  }
+  h2.display-4.specialHead {
+    margin-bottom: 30px !important;
+  }
+  .speclText {
+    width: 96%;
+  }
+  .speclText::before {
+    right: 125px;
   }
 }
 
@@ -636,34 +722,4 @@ html.is-rendering .transition-overlay {
 
 html.to-back {
   /* --overlay-direction: -1; */
-}
-
-.marquee {
-  overflow: hidden;
-  background: #000; /* optional */
-  color: #fff; /* optional */
-  height: 44px; /* adjust as needed */
-  display: flex;
-  align-items: center;
-}
-
-.marquee__track {
-  display: flex;
-  width: max-content;
-  white-space: nowrap;
-  animation: scroll var(--duration, 10s) linear infinite;
-}
-
-.marquee__inner {
-  display: inline-block;
-  padding-inline: 1.25rem;
-}
-
-@keyframes scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  } /* moves by one copy's width */
 }
