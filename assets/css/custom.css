@@ -84,6 +84,23 @@ footer .widget img {
   border-radius: 0 !important;
   padding: 0.4rem 4rem;
 }
+
+/* About Page */
+.speclAbout {
+  background-color: #000;
+  padding: 20px;
+}
+.speclAbout .container-fluid {
+  background-color: #fff;
+}
+.speclAbout h2 {
+  font-size: 3rem;
+  line-height: 1;
+  font-weight: normal;
+}
+.speclAbout .spclPara {
+  padding: 20px 0 0 20px;
+}
 /* Projects */
 .projectTitle {
   position: absolute;
@@ -582,4 +599,34 @@ html.is-rendering .transition-overlay {
 
 html.to-back {
   /* --overlay-direction: -1; */
+}
+
+.marquee {
+  overflow: hidden;
+  background: #000; /* optional */
+  color: #fff; /* optional */
+  height: 44px; /* adjust as needed */
+  display: flex;
+  align-items: center;
+}
+
+.marquee__track {
+  display: flex;
+  width: max-content;
+  white-space: nowrap;
+  animation: scroll var(--duration, 10s) linear infinite;
+}
+
+.marquee__inner {
+  display: inline-block;
+  padding-inline: 1.25rem;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  } /* moves by one copy's width */
 }
