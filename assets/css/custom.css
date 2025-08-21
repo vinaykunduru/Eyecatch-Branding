@@ -161,7 +161,7 @@ footer .widget img {
   justify-content: space-between; /* Push first to top, last to bottom */
 }
 .w50 {
-  max-width: 60%;
+  max-width: 70%;
 }
 .teamName {
   font-size: 3rem;
@@ -627,6 +627,9 @@ h2.display-4 {
   }
   .fooBrand {
     text-align: center;
+  }
+  .footer-link {
+    font-size: 12px;
   }
 
   #fooAbout .col-md-9 {

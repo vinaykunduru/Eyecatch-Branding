@@ -1,0 +1,125 @@
+{
+  "key": "group_project_details",
+  "title": "Project Details",
+  "fields": [
+    {
+      "key": "field_banner",
+      "label": "Banner",
+      "name": "banner",
+      "type": "flexible_content",
+      "layouts": {
+        "layout_image_banner": {
+          "key": "layout_image_banner",
+          "name": "image_banner",
+          "label": "Image Banner",
+          "display": "block",
+          "sub_fields": [
+            {
+              "key": "field_banner_image",
+              "label": "Banner Image",
+              "name": "banner_image",
+              "type": "image",
+              "return_format": "url",
+              "preview_size": "large",
+              "library": "all"
+            }
+          ]
+        },
+        "layout_video_banner": {
+          "key": "layout_video_banner",
+          "name": "video_banner",
+          "label": "Video Banner",
+          "display": "block",
+          "sub_fields": [
+            {
+              "key": "field_banner_video",
+              "label": "Banner Video",
+              "name": "banner_video",
+              "type": "file",
+              "return_format": "url",
+              "library": "all",
+              "mime_types": "mp4,webm,ogv"
+            }
+          ]
+        },
+        "layout_image_slider": {
+          "key": "layout_image_slider",
+          "name": "image_slider",
+          "label": "Image Slider",
+          "display": "block",
+          "sub_fields": [
+            {
+              "key": "field_slider_images",
+              "label": "Slider Images",
+              "name": "slider_images",
+              "type": "gallery",
+              "return_format": "array",
+              "preview_size": "thumbnail",
+              "insert": "append",
+              "library": "all",
+              "min": 0,
+              "max": 0
+            }
+          ]
+        }
+      },
+      "button_label": "Add Banner Layout",
+      "min": "",
+      "max": ""
+    },
+    {
+      "key": "field_category",
+      "label": "Category",
+      "name": "category",
+      "type": "text"
+    },
+    {
+      "key": "field_services",
+      "label": "Services",
+      "name": "services",
+      "type": "repeater",
+      "layout": "row",
+      "button_label": "Add Service",
+      "sub_fields": [
+        {
+          "key": "field_service_item",
+          "label": "Service Item",
+          "name": "service_item",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "key": "field_year",
+      "label": "Year",
+      "name": "year",
+      "type": "number",
+      "min": 1900,
+      "max": 2100,
+      "step": 1
+    },
+    {
+      "key": "field_project_description",
+      "label": "Project Description",
+      "name": "project_description",
+      "type": "wysiwyg",
+      "tabs": "all",
+      "toolbar": "full",
+      "media_upload": 1
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "project"
+      }
+    ]
+  ],
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "active": true
+}
